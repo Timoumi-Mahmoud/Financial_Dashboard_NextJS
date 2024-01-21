@@ -33,7 +33,7 @@ export async function fetchRevenue() {
   }
 }
 
-export async function fetchLatestInvoices(limit :number) {
+export async function fetchLatestInvoices() {
   noStore();
 
   try {
@@ -42,7 +42,7 @@ export async function fetchLatestInvoices(limit :number) {
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       ORDER BY invoices.date DESC
-      LIMIT ${limit}`;
+      LIMIT 5`;
 
     const latestInvoices = data.rows.map((invoice) => ({
       ...invoice,
